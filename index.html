@@ -11,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 
 <body>
@@ -117,8 +119,8 @@
                 </div>
 
                 <div class="skill-card">
-                    <div class="skill-icon">✨</div>
-                    <h3 class="skill-title">Mám rád Vítka</h3>
+                    <div class="skill-icon">C#</div>
+                    <h3 class="skill-title">C#</h3>
                     <p class="skill-description">Vítek je skvělí kamarad pořád mě sere a mlátí.</p>
                 </div>
 
@@ -312,6 +314,11 @@
         </div>
     </div>
 
+
+    <!-- Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
 </body>
 
 
@@ -348,9 +355,9 @@
                         <p><a href="https://github.com/frantiseknahlik">https://github.com/frantiseknahlik</a></p>
                     </div>
                 </div>
-        
-        
-        
+
+
+
                 <div class="contact-item">
                     <div class="contact-icon">📱</div>
                     <div class="contact-text">
@@ -360,39 +367,40 @@
                 </div>
 
 
-                
+
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div class="contact-text">
-                        <h4>Adresa</h4>
-                        <p>Úherské Hradiště, Česká republika</p>
+                        <h4>AdressS</h4>
+                        <p>Perth, Australia</p>
                     </div>
                 </div>
             </div>
-                    <!-- Pravá část: Formulář -->
-        <form class="contact-form">
-            <div class="form-group">
-                <label for="name">Jméno</label>
-                <input type="text" id="name" name="name" placeholder="František" required />
-            </div>
+            <!-- Pravá část: Formulář -->
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Jméno</label>
+                    <input type="text" id="name" name="name" placeholder="František" required />
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="frantisek.nahlik299@gmail.com" required />
-            </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="frantisek.nahlik299@gmail.com" required />
+                </div>
 
-            <div class="form-group">
-                <label for="email">Telefon</label>
-                <input type="email" id="email" name="email" placeholder="+420 704 823 087" required />
-            </div>
+                <div class="form-group">
+                    <label for="email">Telefon</label>
+                    <input type="email" id="email" name="email" placeholder="+420 704 823 087" required />
+                </div>
 
-            <div class="form-group">
-                <label for="message">Zpráva</label>
-                <textarea id="message" name="message" rows="8" placeholder="Napište mi zprávu..." required></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="message">Zpráva</label>
+                    <textarea id="message" name="message" rows="8" placeholder="Napište mi zprávu..."
+                        required></textarea>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Poslat</button>
-        </form>
+                <button type="submit" class="btn btn-primary">Poslat</button>
+            </form>
         </div>
 
 
@@ -400,32 +408,54 @@
         <p class="section-subtitle">Máte dotaz nebo nabídku spolupráce?</p>
 
 
-        
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">František Náhlík</div>
 
-                <div class="social-links">
-                    <a href="https://github.com/frantiseknahlik" class="social-link" aria-label="GitHub">GitHub</a>
-                    <a href="https://www.instagram.com/frantissekk" class="social-link" aria-label="Instagram">Instagram</a>
-                    <a href="https://www.youtube.com/@Typsy351" class="social-link" aria-label="YouTube">YouTube</a>
-                </div>
-
-                <p class="copyright">© 2026 Všechna práva vyhrazena.</p>
-
-                <a href="#home" class="scroll-top">Nahoru ↑</a>
+        <!-- Sekce s mapou -->
+        <section class="map-section" id="map-section">
+            <div class="container">
+                <h2 class="section-title">Kde mě najdete</h2>
+                <p class="section-subtitle">Moje poloha na mapě</p>
+                <div id="map"></div>
             </div>
-        </div>
-    </footer>
+        </section>
 
 
 
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">František Náhlík</div>
+
+                    <div class="social-links">
+                        <a href="https://github.com/frantiseknahlik" class="social-link" aria-label="GitHub">GitHub</a>
+                        <a href="https://www.instagram.com/frantissekk" class="social-link"
+                            aria-label="Instagram">Instagram</a>
+                        <a href="https://www.youtube.com/@Typsy351" class="social-link" aria-label="YouTube">YouTube</a>
+                    </div>
+
+                    <p class="copyright">© 2026 Všechna práva vyhrazena.</p>
+
+                    <a href="#home" class="scroll-top">Nahoru ↑</a>
+                </div>
+            </div>
+        </footer>
     </div>
-
-
 </section>
 
+    <!-- Leaflet.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+    <script>
+        // Inicializace mapy — souřadnice Prahy
+        var map = L.map("map").setView([-31.95378422001156, 115.86222848748118], 15);
+    
+        // Přidání mapových dlaždic z OpenStreetMap
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19,
+        }).addTo(map);
+        
+    </script>
 
 </html>
