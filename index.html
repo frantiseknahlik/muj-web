@@ -1,461 +1,213 @@
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>František Náhlík</title>
-
-    <!-- Google Fonts - ⬇️ NAHRAĎ VLASTNÍM FONTEM -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.min.css">
-    <!-- Leaflet.js CSS -->
+    <title>František Náhlík | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
-
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
+    <div class="cursor"></div>
 
-                <!-- Logo / Jméno -->
-                <a href="#home" class="logo">František Náhlík</a>
+    <nav class="navbar" id="navbar">
+        <div class="container flex-nav">
+            <a href="#home" class="brand">František NÁHLÍK</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#skills">Dovednosti</a>
+                    <a href="#works">Projekty</a>
+                    <a href="#contact">Kontakt</a>
+                </div>
+                <div class="lang-switch">
+                    <span class="active">CZ</span> <span class="divider">|</span> <span>EN</span>
+                </div>
+                <button id="dark-mode-toggle" aria-label="Přepnout režim">🌓</button>
+            </div>
+        </div>
+    </nav>
 
-                <!-- Navigační menu -->
-                <nav class="nav">
-                    <a href="#home" class="nav-link active">Home</a>
-                    <a href="#about" class="nav-link">O mně</a>
-                    <a href="#skills" class="nav-link">Co umím</a>
-                    <a href="#works" class="nav-link">Moje Projekty</a>
-                    <a href="#contact" class="nav-link">Kontakt</a>
-                </nav>
-
+    <header class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="reveal-text">
+                    <h1 class="fade-up">Web Designer <br>& <span class="text-outline">Developer</span></h1>
+                </div>
+                <p class="hero-sub fade-in delay-1">Tvořím funkční digitální zážitky s důrazem na čistý kód a minimalismus.</p>
+                <div class="hero-btns fade-in delay-2">
+                    <a href="#works" class="btn btn-primary">Moje práce</a>
+                    <a href="#contact" class="btn btn-outline">Kontakt</a>
+                </div>
+            </div>
+            
+            <div class="hero-image fade-in delay-1">
+                <svg class="image-mask" viewBox="0 0 400 400">
+                    <defs>
+                        <clipPath id="blob">
+                            <path d="M44.1,-67.2C53.5,-62.5,55,-44.2,60.6,-28.6C66.1,-13.1,75.7,-0.4,77.2,13.3C78.7,27.1,72,41.8,61.9,53.8C51.8,65.8,38.3,75,23.5,78.8C8.7,82.6,-7.3,80.9,-16.3,71.1C-25.3,61.3,-27.2,43.3,-39,32.3C-50.8,21.4,-72.5,17.5,-78.4,8.3C-84.2,-0.8,-74.4,-15.1,-66.4,-29.3C-58.4,-43.6,-52.3,-57.7,-41.5,-61.7C-30.8,-65.7,-15.4,-59.7,1,-61.2C17.3,-62.7,34.7,-71.8,44.1,-67.2Z" transform="translate(200 200) scale(2.5)" />
+                        </clipPath>
+                    </defs>
+                    <image href="images/moje-foto3.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" clip-path="url(#blob)" />
+                </svg>
             </div>
         </div>
     </header>
-    <section class="hero" id="home">
+
+    <section id="skills" class="section reveal">
         <div class="container">
-            <div class="hero-content">
-
-                <!-- Levá strana - text -->
-                <div class="hero-text">
-                    <h1>
-                        Hi,<br>
-                        I'm <span class="highlight">František</span><br>
-                        Web Designer
-                    </h1>
-
-                    <p>Jsem programátor a designér.</p>
-
-                    <a href="#contact" class="btn btn-primary">Contact</a>
-                </div>
-
-                <!-- Pravá strana - fotka -->
-                <div class="hero-image">
-                    <svg class="image-mask" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                        <!-- SVG maska bude tady - vytvoříme v kroku 6 -->
-                        <defs>
-                            <clipPath id="circleMask">
-                                <path fill="#FF0066"
-                                    d="M44.1,-67.2C53.5,-62.5,55,-44.2,60.6,-28.6C66.1,-13.1,75.7,-0.4,77.2,13.3C78.7,27.1,72,41.8,61.9,53.8C51.8,65.8,38.3,75,23.5,78.8C8.7,82.6,-7.3,80.9,-16.3,71.1C-25.3,61.3,-27.2,43.3,-39,32.3C-50.8,21.4,-72.5,17.5,-78.4,8.3C-84.2,-0.8,-74.4,-15.1,-66.4,-29.3C-58.4,-43.6,-52.3,-57.7,-41.5,-61.7C-30.8,-65.7,-15.4,-59.7,1,-61.2C17.3,-62.7,34.7,-71.8,44.1,-67.2Z"
-                                    transform="translate(200 200) scale(2.5)" />
-                            </clipPath>
-                        </defs>
-                        <image href="images\moje-foto3.jpg" width="400" height="400" clip-path="url(#circleMask)" />
-                    </svg>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <section class="skills" id="skills">
-        <div class="container">
-            <h2 class="section-title">Moje Dovednosti</h2>
-            <p class="section-subtitle">Co umím a na čem pracuji</p>
-
+            <span class="section-tag">01 / Dovednosti</span>
             <div class="skills-grid">
-
-                <!-- Kartička 1 -->
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3 class="skill-title">UI/UX Design</h3>
-                    <p class="skill-description">Navrhuju intuitivní a krásná uživatelská rozhraní s ohledem na
-                        uživatele.</p>
+                <div class="skill-item">
+                    <span class="skill-icon">🎨</span>
+                    <h3>UI/UX Design</h3>
+                    <p>Figma, Adobe XD, Prototyping</p>
                 </div>
-
-                <!-- Kartička 2 -->
-                <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3 class="skill-title">HTML & CSS</h3>
-                    <p class="skill-description">Tvořím responzivní a sémantické webové stránky pomocí moderních
-                        technologií.</p>
+                <div class="skill-item">
+                    <span class="skill-icon">💻</span>
+                    <h3>Frontend</h3>
+                    <p>HTML5, CSS3, JavaScript (ES6+)</p>
                 </div>
-
-                <!-- Kartička 3 -->
-                <div class="skill-card">
-                    <div class="skill-icon">⚙️</div>
-                    <h3 class="skill-title">JavaScript</h3>
-                    <p class="skill-description">Programuji interaktivní prvky a logiku pomocí vanilla JS nebo
-                        framework.</p>
+                <div class="skill-item">
+                    <span class="skill-icon">🐍</span>
+                    <h3>Python</h3>
+                    <p>Scripting, Automation, Backend</p>
                 </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">🐍</div>
-                    <h3 class="skill-title">Python</h3>
-                    <p class="skill-description">Mám rád hady hlvaně pythony.</p>
+                <div class="skill-item">
+                    <span class="skill-icon">#</span>
+                    <h3>C# / .NET</h3>
+                    <p>Desktop Applications, Tools</p>
                 </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">📟</div>
-                    <h3 class="skill-title">Terminal</h3>
-                    <p class="skill-description">Rad hraju dinosaura když nemam WiFi.</p>
+                <div class="skill-item">
+                    <span class="skill-icon">🎮</span>
+                    <h3>Lua / FiveM</h3>
+                    <p>Game Scripting, Server Logic</p>
                 </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">C#</div>
-                    <h3 class="skill-title">C#</h3>
-                    <p class="skill-description">Vítek je skvělí kamarad pořád mě sere a mlátí.</p>
+                <div class="skill-item">
+                    <span class="skill-icon">🗄️</span>
+                    <h3>MySQL</h3>
+                    <p>Database Management, Queries</p>
                 </div>
-
+                <div class="skill-item">
+                    <span class="skill-icon">⚙️</span>
+                    <h3>Git & Linux</h3>
+                    <p>Version Control, Server Admin</p>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-icon">📱</span>
+                    <h3>Responsivita</h3>
+                    <p>Mobile-first přístup</p>
+                </div>
             </div>
         </div>
     </section>
 
-
-
-
-
-    <section class="portfolio" id="works">
+    <section id="works" class="section reveal bg-alt">
         <div class="container">
-            <h2 class="section-title">Moje Projekty</h2>
-            <p class="section-subtitle">Ukázka mých nejlepších prací</p>
-
-            <!-- Filtrovací tlačítka -->
-            <div class="portfolio-filters">
+            <span class="section-tag">02 / Vybrané projekty</span>
+            
+            <div class="filter-bar">
                 <button class="filter-btn active" data-filter="all">Vše</button>
-                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="web">Web</button>
                 <button class="filter-btn" data-filter="app">Aplikace</button>
-                <button class="filter-btn" data-filter="ui">UI/UX</button>
+                <button class="filter-btn" data-filter="game">Hry/FiveM</button>
             </div>
 
-            <!-- Grid s projekty -->
-            <div class="portfolio-grid">
-
-                <!-- Projekt 1 -->
-                <div class="portfolio-card" data-category="web">
-                    <div class="portfolio-image">
-                        <img src="https://picsum.photos/600/400?random=1" alt="Projekt 1" loading="lazy">
-                        <img src="https://picsum.photos/600/400?random=2" alt="Fivem server" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title">Fivem server</h3>
-                            <p class="portfolio-description">Herní FiveM server což je modifikace GTA V. kde si hráči
-                                mohou hrát společně.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">MySQL</span>
-                                <span class="tag">OpenIV</span>
-                                <span class="tag">JavaScript</span>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="#" class="portfolio-link">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg>
-                                    Demo
-                                </a>
-                                <a href="#" class="portfolio-link">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg>
-                                    GitHub
-                                </a>
-                            </div>
-                        </div>
+            <div class="work-grid">
+                <div class="work-card" data-category="game">
+                    <div class="work-img-wrap">
+                        <img src="https://picsum.photos/800/600?random=1" alt="FiveM Server">
+                    </div>
+                    <div class="work-info">
+                        <h4>FiveM Community Server</h4>
+                        <div class="work-tags"><span>#Lua</span><span>#MySQL</span><span>#Game</span></div>
                     </div>
                 </div>
 
-                <!-- Projekt 2 -->
-                <div class="portfolio-card" data-category="app">
-                    <div class="portfolio-image">
-                        <img src="https://picsum.photos/600/400?random=3" alt="Projekt 2" loading="lazy">
-                        <img src="https://picsum.photos/600/400?random=4" alt="Dashboard" loading="lazy">
-                        <!-- atd... -->
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title">Dashboard</h3>
-                            <p class="portfolio-description">Můj osobní dashboard s kalkulačkou počasím a datumem</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">css</span>
-                                <span class="tag">JavaScript</span>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="#" class="portfolio-link">Demo</a>
-                                <a href="https://frantiseknahlik.github.io/dashboard/" class="portfolio-link">GitHub</a>
-                            </div>
-                        </div>
+                <div class="work-card" data-category="web">
+                    <div class="work-img-wrap">
+                        <img src="https://picsum.photos/800/600?random=2" alt="Admin Dashboard">
+                    </div>
+                    <div class="work-info">
+                        <h4>Admin Dashboard</h4>
+                        <div class="work-tags"><span>#JS</span><span>#API</span><span>#UI</span></div>
                     </div>
                 </div>
 
-                <!-- Projekt 3 -->
-                <div class="portfolio-card" data-category="ui">
-                    <div class="portfolio-image">
-                        <img src="https://picsum.photos/600/400?random=5" alt="Projekt 3" loading="lazy">
-                        <img src="https://picsum.photos/600/400?random=6" alt="Tennis game" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title">Tennis game</h3>
-                            <p class="portfolio-description">Hra v C# na Windows o tennisu </p>
-                            <div class="portfolio-tags">
-                                <span class="tag">C#</span>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="#" class="portfolio-link">Behance</a>
-                            </div>
-                        </div>
+                <div class="work-card" data-category="app">
+                    <div class="work-img-wrap">
+                        <img src="https://picsum.photos/800/600?random=3" alt="C# Tools">
+                    </div>
+                    <div class="work-info">
+                        <h4>Tennis Game & Tools</h4>
+                        <div class="work-tags"><span>#C#</span><span>#.NET</span><span>#Desktop</span></div>
                     </div>
                 </div>
 
-                <!-- Projekt 4 -->
-                <div class="portfolio-card" data-category="web">
-                    <div class="portfolio-image">
-                        <img src="https://picsum.photos/600/400?random=7" alt="Projekt 4" loading="lazy">
-                        <img src="https://picsum.photos/600/400?random=8" alt="Focus racing" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title">Focus racing</h3>
-                            <p class="portfolio-description">Webová stránka o fromulích a motorsportu</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">HTML</span>
-                                <span class="tag">css</span>
-                                <span class="tag">JavaScript</span>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="#" class="portfolio-link">Demo</a>
-                                <a href="#" class="portfolio-link">GitHub</a>
-                            </div>
-                        </div>
+                <div class="work-card" data-category="web">
+                    <div class="work-img-wrap">
+                        <img src="https://picsum.photos/800/600?random=4" alt="Portfolio Website">
+                    </div>
+                    <div class="work-info">
+                        <h4>Osobní Portfolio</h4>
+                        <div class="work-tags"><span>#HTML</span><span>#CSS</span><span>#Design</span></div>
                     </div>
                 </div>
-
-                <!-- Projekt 5 -->
-                <div class="portfolio-card" data-category="app">
-                    <div class="portfolio-image">
-                        <img src="https://picsum.photos/600/400?random=9" alt="Projekt 5" loading="lazy">
-                        <img src="https://picsum.photos/600/400?random=10" alt="Todo List App" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title">Todo List App</h3>
-                            <p class="portfolio-description">Jednoduchá aplikace pro správu úkolů</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">LocalStorage</span>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="#" class="portfolio-link">Demo</a>
-                                <a href="#" class="portfolio-link">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projekt 6 -->
-                <div class="portfolio-card" data-category="ui">
-                    <div class="portfolio-image">
-                        <img src="https://picsum.photos/600/400?random=11" alt="Projekt 6" loading="lazy">
-                        <img src="https://picsum.photos/600/400?random=12" alt="Instagram posty" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3 class="portfolio-title">Instagram posty</h3>
-                            <p class="portfolio-description">Posty na Instagramu pro firmy a osobnosti</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Figma</span>
-                                <span class="tag">Canva</span>
-                            </div>
-                            <div class="portfolio-links">
-                                <a href="https://www.instagram.com/frantissekk" class="portfolio-link">Instagram</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-
-        <div class="portfolio-load-more">
-            <button class="btn btn-primary" id="load-more-btn">Zobrazit více projektů✨</button>
-        </div>
-
     </section>
 
-    <script src="script.js"></script>
+    <section id="contact" class="section reveal">
+        <div class="container">
+            <span class="section-tag">03 / Kontakt</span>
+            <div class="contact-wrap">
+                <div class="contact-text">
+                    <h2>Máte nápad? <br>Pojďme ho realizovat.</h2>
+                    
+                    <div class="copy-email-box" id="copy-email">
+                        <span class="email-text">frantisek.nahlik299@gmail.com</span>
+                        <span class="copy-badge">Klikni pro kopírování</span>
+                    </div>
 
+                    <div class="social-links-large">
+                        <a href="https://github.com/frantiseknahlik" target="_blank">GitHub ↗</a>
+                        <a href="https://www.instagram.com/frantissekk" target="_blank">Instagram ↗</a>
+                    </div>
+                </div>
+                
+                <form class="minimal-form">
+                    <input type="text" placeholder="Vaše jméno" required>
+                    <input type="email" placeholder="Váš e-mail" required>
+                    <textarea placeholder="Jak vám mohu pomoci?" rows="4"></textarea>
+                    <button type="submit" class="submit-btn">Odeslat zprávu</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
+    <div class="map-wrap reveal">
+        <div id="map"></div>
+    </div>
 
+    <footer class="minimal-footer">
+        <div class="container flex-footer">
+            <p>© 2026 František Náhlík. Všechna práva vyhrazena.</p>
+            <div class="socials">
+                <a href="#home">Nahoru ↑</a>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Modal okno -->
-    <div class="modal" id="project-modal">
+    <div id="project-modal" class="modal">
         <div class="modal-content">
-            <span class="modal-close">×</span>
-            <div class="modal-body">
-                <img src="" alt="Project Detail" id="modal-image">
-                <div class="modal-info">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-description"></p>
-                    <div id="modal-tags"></div>
-                    <div id="modal-links"></div>
-                </div>
-            </div>
+            <button class="close-modal">✕</button>
+            <img id="modal-image" src="" alt="">
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
         </div>
     </div>
 
-
-    <!-- Leaflet.js -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-
+    <script src="script.js"></script>
 </body>
-
-
-
-
-<section class="contact" id="contact">
-    <div class="container">
-        <h2 class="section-title">Napište mi</h2>
-
-        <div class="contact-grid">
-            <!-- Levá část: Kontaktní údaje -->
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-text">
-                        <h4>Email</h4>
-                        <p><a href="mailto:frantisek.nahlik299@gmail.com">frantisek.nahlik299@gmail.com</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-text">
-                        <h4>Telefon</h4>
-                        <p><a href="tel:+420704823087">+420 704 823 087</a></p>
-                    </div>
-                </div>
-
-
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-text">
-                        <h4>Github</h4>
-                        <p><a href="https://github.com/frantiseknahlik">https://github.com/frantiseknahlik</a></p>
-                    </div>
-                </div>
-
-
-
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-text">
-                        <h4>Instagram</h4>
-                        <p><a href="https://www.instagram.com/frantissekk">https://www.instagram.com/frantissekk</a></p>
-                    </div>
-                </div>
-
-
-
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-text">
-                        <h4>AdressS</h4>
-                        <p>Perth, Australia</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Pravá část: Formulář -->
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Jméno</label>
-                    <input type="text" id="name" name="name" placeholder="František" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="frantisek.nahlik299@gmail.com" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Telefon</label>
-                    <input type="email" id="email" name="email" placeholder="+420 704 823 087" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Zpráva</label>
-                    <textarea id="message" name="message" rows="8" placeholder="Napište mi zprávu..."
-                        required></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Poslat</button>
-            </form>
-        </div>
-
-
-
-        <p class="section-subtitle">Máte dotaz nebo nabídku spolupráce?</p>
-
-
-
-        <!-- Sekce s mapou -->
-        <section class="map-section" id="map-section">
-            <div class="container">
-                <h2 class="section-title">Kde mě najdete</h2>
-                <p class="section-subtitle">Moje poloha na mapě</p>
-                <div id="map"></div>
-            </div>
-        </section>
-
-
-
-
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-logo">František Náhlík</div>
-
-                    <div class="social-links">
-                        <a href="https://github.com/frantiseknahlik" class="social-link" aria-label="GitHub">GitHub</a>
-                        <a href="https://www.instagram.com/frantissekk" class="social-link"
-                            aria-label="Instagram">Instagram</a>
-                        <a href="https://www.youtube.com/@Typsy351" class="social-link" aria-label="YouTube">YouTube</a>
-                    </div>
-
-                    <p class="copyright">© 2026 Všechna práva vyhrazena.</p>
-
-                    <a href="#home" class="scroll-top">Nahoru ↑</a>
-                </div>
-            </div>
-        </footer>
-    </div>
-</section>
-
-    <!-- Leaflet.js -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <script>
-        // Inicializace mapy — souřadnice Prahy
-        var map = L.map("map").setView([-31.95378422001156, 115.86222848748118], 15);
-    
-        // Přidání mapových dlaždic z OpenStreetMap
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 19,
-        }).addTo(map);
-        
-    </script>
-
 </html>
