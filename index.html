@@ -1,213 +1,488 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>František Náhlík | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>František Náhlík | IT Student & Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="cursor"></div>
 
+<body>
+
+    <div class="noise-overlay"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
-        <div class="container flex-nav">
-            <a href="#home" class="brand">František NÁHLÍK</a>
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="#skills">Dovednosti</a>
-                    <a href="#works">Projekty</a>
-                    <a href="#contact">Kontakt</a>
+        <div class="nav-inner container">
+            <a href="#home" class="nav-logo">FN<span class="logo-dot">.</span></a>
+            <div class="nav-links" id="nav-links">
+                <a href="#about" class="nav-link lang-text" data-cz="O mně" data-en="About">O mně</a>
+                <a href="#skills" class="nav-link lang-text" data-cz="Dovednosti" data-en="Skills">Dovednosti</a>
+                <a href="#journey" class="nav-link lang-text" data-cz="Cesta" data-en="Journey">Cesta</a>
+                <a href="#works" class="nav-link lang-text" data-cz="Projekty" data-en="Projects">Projekty</a>
+                <a href="#contact" class="nav-link lang-text" data-cz="Kontakt" data-en="Contact">Kontakt</a>
+            </div>
+            <div class="nav-actions">
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    <span class="lang-text" data-cz="C# & Sítě" data-en="C# & Networks">C# & Sítě</span>
                 </div>
-                <div class="lang-switch">
-                    <span class="active">CZ</span> <span class="divider">|</span> <span>EN</span>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="cz">CZ</button>
+                    <span class="lang-sep">|</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <button id="dark-mode-toggle" aria-label="Přepnout režim">🌓</button>
+                <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <header class="hero" id="home">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <div class="reveal-text">
-                    <h1 class="fade-up">Web Designer <br>& <span class="text-outline">Developer</span></h1>
-                </div>
-                <p class="hero-sub fade-in delay-1">Tvořím funkční digitální zážitky s důrazem na čistý kód a minimalismus.</p>
-                <div class="hero-btns fade-in delay-2">
-                    <a href="#works" class="btn btn-primary">Moje práce</a>
-                    <a href="#contact" class="btn btn-outline">Kontakt</a>
-                </div>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-inner container">
+            <div class="hero-label fade-up delay-0">
+                <span class="status-dot"></span>
+                <span class="lang-text" data-cz="Dostupný pro stáže a projekty"
+                    data-en="Available for internships & projects">Dostupný pro stáže a projekty</span>
             </div>
-            
-            <div class="hero-image fade-in delay-1">
-                <svg class="image-mask" viewBox="0 0 400 400">
-                    <defs>
-                        <clipPath id="blob">
-                            <path d="M44.1,-67.2C53.5,-62.5,55,-44.2,60.6,-28.6C66.1,-13.1,75.7,-0.4,77.2,13.3C78.7,27.1,72,41.8,61.9,53.8C51.8,65.8,38.3,75,23.5,78.8C8.7,82.6,-7.3,80.9,-16.3,71.1C-25.3,61.3,-27.2,43.3,-39,32.3C-50.8,21.4,-72.5,17.5,-78.4,8.3C-84.2,-0.8,-74.4,-15.1,-66.4,-29.3C-58.4,-43.6,-52.3,-57.7,-41.5,-61.7C-30.8,-65.7,-15.4,-59.7,1,-61.2C17.3,-62.7,34.7,-71.8,44.1,-67.2Z" transform="translate(200 200) scale(2.5)" />
-                        </clipPath>
-                    </defs>
-                    <image href="images/moje-foto3.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" clip-path="url(#blob)" />
-                </svg>
+            <h1 class="hero-name fade-up delay-1">
+                <span class="name-line">František</span>
+                <span class="name-line outline-text">Náhlík</span>
+            </h1>
+            <p class="hero-sub fade-up delay-2 lang-text" data-cz="IT Student · Cyber Security · Clean Code"
+                data-en="IT Student · Cyber Security · Clean Code">
+                IT Student · Cyber Security · Clean Code
+            </p>
+            <div class="hero-cta fade-up delay-3">
+                <a href="#works" class="btn btn-primary lang-text" data-cz="Prohlédnout projekty"
+                    data-en="View Projects">Prohlédnout projekty</a>
+                <a href="#contact" class="btn btn-ghost lang-text" data-cz="Kontaktovat"
+                    data-en="Contact">Kontaktovat</a>
             </div>
         </div>
-    </header>
+        <div class="scroll-hint fade-up delay-4">
+            <div class="scroll-line-anim"></div>
+        </div>
+    </section>
 
-    <section id="skills" class="section reveal">
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>Cyber Security</span><em>—</em>
+                <span>Python</span><em>—</em>
+                <span>C#</span><em>—</em>
+                <span>Web Development</span><em>—</em>
+                <span>Networking</span><em>—</em>
+                <span>Linux</span><em>—</em>
+                <span>Clean Code</span><em>—</em>
+                <span>Cyber Security</span><em>—</em>
+                <span>Python</span><em>—</em>
+                <span>C#</span><em>—</em>
+                <span>Web Development</span><em>—</em>
+                <span>Networking</span><em>—</em>
+                <span>Linux</span><em>—</em>
+                <span>Clean Code</span><em>—</em>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
         <div class="container">
-            <span class="section-tag">01 / Dovednosti</span>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <span class="skill-icon">🎨</span>
-                    <h3>UI/UX Design</h3>
-                    <p>Figma, Adobe XD, Prototyping</p>
+            <div class="about-grid">
+                <div class="about-photo-col">
+                    <div class="photo-frame">
+                        <svg class="photo-svg" viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <clipPath id="photo-clip">
+                                    <rect x="0" y="0" width="400" height="480" rx="24" ry="24" />
+                                </clipPath>
+                            </defs>
+                            <image href="images/moje-foto3.jpg" width="400" height="480"
+                                preserveAspectRatio="xMidYMid slice" clip-path="url(#photo-clip)" />
+                        </svg>
+                        <div class="photo-tag">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Uherské Hradiště, CZ</span>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-num" id="repo-count">—</span>
+                            <span class="stat-label lang-text" data-cz="GitHub repos" data-en="GitHub repos">GitHub
+                                repos</span>
+                        </div>
+                        <div class="stat-div"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">2+</span>
+                            <span class="stat-label lang-text" data-cz="Roky kódování" data-en="Years coding">Roky
+                                kódování</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <span class="skill-icon">💻</span>
-                    <h3>Frontend</h3>
-                    <p>HTML5, CSS3, JavaScript (ES6+)</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-icon">🐍</span>
-                    <h3>Python</h3>
-                    <p>Scripting, Automation, Backend</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-icon">#</span>
-                    <h3>C# / .NET</h3>
-                    <p>Desktop Applications, Tools</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-icon">🎮</span>
-                    <h3>Lua / FiveM</h3>
-                    <p>Game Scripting, Server Logic</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-icon">🗄️</span>
-                    <h3>MySQL</h3>
-                    <p>Database Management, Queries</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-icon">⚙️</span>
-                    <h3>Git & Linux</h3>
-                    <p>Version Control, Server Admin</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-icon">📱</span>
-                    <h3>Responsivita</h3>
-                    <p>Mobile-first přístup</p>
+                <div class="about-text-col">
+                    <span class="section-tag lang-text" data-cz="01 / O mně" data-en="01 / About">01 / O mně</span>
+                    <h2 class="section-title lang-text" data-cz="Student IT s vášní pro bezpečný kód."
+                        data-en="IT Student with a passion for secure code.">
+                        Student IT<br>s vášní pro<br>bezpečný kód.
+                    </h2>
+                    <p class="about-bio lang-text"
+                        data-cz="Ahoj, jsem František. Studuji na IT škole a baví mě víc než jen psát kód — chci rozumět tomu, co se děje pod kapotou. Propojuji webový vývoj s kybernetickou bezpečností a zajímá mě, jak systémy fungují, jak se dají prolomit a jak správně zabezpečit."
+                        data-en="Hi, I'm František. I study at an IT school and I'm into more than just writing code — I want to understand what happens under the hood. I bridge web development with cybersecurity and I'm passionate about how systems work, how they can be broken, and how to properly secure them.">
+                        Ahoj, jsem František. Studuji na IT škole a baví mě víc než jen psát kód — chci rozumět tomu, co
+                        se děje pod kapotou. Propojuji webový vývoj s kybernetickou bezpečností a zajímá mě, jak systémy
+                        fungují, jak se dají prolomit a jak správně zabezpečit.
+                    </p>
+                    <div class="about-socials">
+                        <a href="https://github.com/frantiseknahlik" target="_blank" class="social-link">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="#" target="_blank" class="social-link">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://www.instagram.com/frantissekk" target="_blank" class="social-link">
+                            <i class="fa-brands fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                    <a href="#" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-download"></i>
+                        <span class="lang-text" data-cz="Stáhnout CV" data-en="Download CV">Stáhnout CV</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal bg-alt">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag lang-text" data-cz="02 / Dovednosti" data-en="02 / Skills">02 /
+                    Dovednosti</span>
+                <h2 class="section-title lang-text" data-cz="Co umím a čím se zabývám"
+                    data-en="What I know & work with">Co umím a čím se zabývám</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-icon-wrap"><i class="fa-solid fa-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p class="lang-text"
+                        data-cz="HTML5, CSS3, JavaScript. Responzivní a výkonné weby s důrazem na čistý kód."
+                        data-en="HTML5, CSS3, JavaScript. Responsive and performant websites with focus on clean code.">
+                        HTML5, CSS3, JavaScript. Responzivní a výkonné weby s důrazem na čistý kód.</p>
+                    <div class="skill-chips"><span>HTML</span><span>CSS</span><span>JS</span></div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Cyber Security</h3>
+                    <p class="lang-text"
+                        data-cz="Ofenzivní i defenzivní bezpečnost, OWASP zranitelnosti a bezpečný návrh systémů."
+                        data-en="Offensive and defensive security, OWASP vulnerabilities and secure system design.">
+                        Ofenzivní i defenzivní bezpečnost, OWASP zranitelnosti a bezpečný návrh systémů.</p>
+                    <div class="skill-chips"><span>OWASP</span><span>Pentesting</span></div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon-wrap"><i class="fa-brands fa-python"></i></div>
+                    <h3>Python</h3>
+                    <p class="lang-text"
+                        data-cz="Skriptování, bezpečnostní utility a automatizace. Rychlé prototypování nástrojů."
+                        data-en="Scripting, security utilities and automation. Fast prototyping of custom tools.">
+                        Skriptování, bezpečnostní utility a automatizace. Rychlé prototypování nástrojů.</p>
+                    <div class="skill-chips"><span>Scripting</span><span>Automation</span></div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon-wrap"><i class="fa-brands fa-linux"></i></div>
+                    <h3>Linux OS</h3>
+                    <p class="lang-text"
+                        data-cz="Pokročilá práce s terminálem, správa systémů a Linux jako primární prostředí."
+                        data-en="Advanced terminal, system administration and Linux as primary environment.">Pokročilá
+                        práce s terminálem, správa systémů a Linux jako primární prostředí.</p>
+                    <div class="skill-chips"><span>Terminal</span><span>Bash</span></div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon-wrap"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Networking</h3>
+                    <p class="lang-text"
+                        data-cz="TCP/IP model, routování, switching a analýza síťového provozu ve Wiresharku."
+                        data-en="TCP/IP model, routing, switching and traffic analysis with Wireshark.">TCP/IP model,
+                        routování, switching a analýza síťového provozu ve Wiresharku.</p>
+                    <div class="skill-chips"><span>TCP/IP</span><span>Wireshark</span></div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon-wrap"><i class="fa-solid fa-database"></i></div>
+                    <h3>Databases</h3>
+                    <p class="lang-text"
+                        data-cz="Relační modely, návrh databázové struktury a ochrana proti SQL Injection."
+                        data-en="Relational models, database design and protection against SQL Injection.">Relační
+                        modely, návrh databázové struktury a ochrana proti SQL Injection.</p>
+                    <div class="skill-chips"><span>SQL</span><span>Security</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section id="journey" class="section reveal">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag lang-text" data-cz="03 / Cesta" data-en="03 / Journey">03 / Cesta</span>
+                <h2 class="section-title lang-text" data-cz="Jak to šlo za sebou" data-en="How it all started">Jak to
+                    šlo za sebou</h2>
+            </div>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <div class="tl-left">
+                        <div class="tl-year">2024</div>
+                    </div>
+                    <div class="tl-dot-wrap">
+                        <div class="tl-dot"></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <h3 class="lang-text" data-cz="Začátek na střední" data-en="High school start">Začátek na
+                            střední</h3>
+                        <p class="lang-text"
+                            data-cz="První reálné krůčky. HTML, CSS a pochopení základní logiky programování a struktury počítače."
+                            data-en="First real steps. HTML, CSS and understanding basic programming logic and computer architecture.">
+                            První reálné krůčky. HTML, CSS a pochopení základní logiky programování a struktury
+                            počítače.
+                        </p>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-left">
+                        <div class="tl-year">2025</div>
+                    </div>
+                    <div class="tl-dot-wrap">
+                        <div class="tl-dot"></div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card">
+                        <h3 class="lang-text" data-cz="Python & Sítě" data-en="Python & Networks">Python & Sítě</h3>
+                        <p class="lang-text"
+                            data-cz="Začátky s Pythonem, pokročilejší weby a hlubší vhled do hardware a počítačových sítí."
+                            data-en="Starting with Python, more advanced websites and deeper insight into hardware and networking.">
+                            Začátky s Pythonem, pokročilejší weby a hlubší vhled do hardware a počítačových sítí.
+                        </p>
+                    </div>
+                </div>
+                <div class="tl-item reveal">
+                    <div class="tl-left">
+                        <div class="tl-year">2026</div>
+                    </div>
+                    <div class="tl-dot-wrap">
+                        <div class="tl-dot active"></div>
+                    </div>
+                    <div class="tl-card active">
+                        <div class="tl-now lang-text" data-cz="Teď" data-en="Now">Teď</div>
+                        <h3 class="lang-text" data-cz="C# & Cyber Security" data-en="C# & Cyber Security">C# & Cyber
+                            Security</h3>
+                        <p class="lang-text"
+                            data-cz="První programy v C#, výraznější práce se sítěmi. Cíl: vstoupit do světa Penetration Testingu."
+                            data-en="First C# programs, stronger networking work. Goal: enter the world of Penetration Testing.">
+                            První programy v C#, výraznější práce se sítěmi. Cíl: vstoupit do světa Penetration
+                            Testingu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
     <section id="works" class="section reveal bg-alt">
         <div class="container">
-            <span class="section-tag">02 / Vybrané projekty</span>
-            
-            <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">Vše</button>
-                <button class="filter-btn" data-filter="web">Web</button>
-                <button class="filter-btn" data-filter="app">Aplikace</button>
-                <button class="filter-btn" data-filter="game">Hry/FiveM</button>
+            <div class="section-header centered">
+                <span class="section-tag lang-text" data-cz="04 / Projekty" data-en="04 / Projects">04 / Projekty</span>
+                <h2 class="section-title lang-text" data-cz="Moje projekty" data-en="My Projects">Moje projekty</h2>
             </div>
-
-            <div class="work-grid">
-                <div class="work-card" data-category="game">
-                    <div class="work-img-wrap">
-                        <img src="https://picsum.photos/800/600?random=1" alt="FiveM Server">
+            <div class="filter-bar">
+                <button class="filter-btn active lang-text" data-filter="all" data-cz="Vše" data-en="All">Vše</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+                <button class="filter-btn" data-filter="cyber">Cyber Security</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card reveal" data-category="web" data-title="Osobní Portfolio"
+                    data-desc="Osobní prezentační web vytvořený od nuly pomocí HTML, CSS a JavaScriptu. Zaměřeno na čistý design, responzivitu a moderní vizuál."
+                    data-tags="#HTML #CSS #JS">
+                    <div class="project-img-wrap">
+                        <img src="images/portfolio.png" alt="Portfolio" loading="lazy">
+                        <div class="project-overlay">
+                            <span class="lang-text" data-cz="Zobrazit detail" data-en="View detail">Zobrazit
+                                detail</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
                     </div>
-                    <div class="work-info">
-                        <h4>FiveM Community Server</h4>
-                        <div class="work-tags"><span>#Lua</span><span>#MySQL</span><span>#Game</span></div>
-                    </div>
-                </div>
-
-                <div class="work-card" data-category="web">
-                    <div class="work-img-wrap">
-                        <img src="https://picsum.photos/800/600?random=2" alt="Admin Dashboard">
-                    </div>
-                    <div class="work-info">
-                        <h4>Admin Dashboard</h4>
-                        <div class="work-tags"><span>#JS</span><span>#API</span><span>#UI</span></div>
-                    </div>
-                </div>
-
-                <div class="work-card" data-category="app">
-                    <div class="work-img-wrap">
-                        <img src="https://picsum.photos/800/600?random=3" alt="C# Tools">
-                    </div>
-                    <div class="work-info">
-                        <h4>Tennis Game & Tools</h4>
-                        <div class="work-tags"><span>#C#</span><span>#.NET</span><span>#Desktop</span></div>
-                    </div>
-                </div>
-
-                <div class="work-card" data-category="web">
-                    <div class="work-img-wrap">
-                        <img src="https://picsum.photos/800/600?random=4" alt="Portfolio Website">
-                    </div>
-                    <div class="work-info">
+                    <div class="project-meta">
                         <h4>Osobní Portfolio</h4>
-                        <div class="work-tags"><span>#HTML</span><span>#CSS</span><span>#Design</span></div>
+                        <div class="project-chips"><span>#HTML</span><span>#CSS</span><span>#JS</span></div>
                     </div>
-                </div>
+                </article>
+                <article class="project-card reveal" data-category="cyber" data-title="Secure Password Manager"
+                    data-desc="Lokální aplikace pro bezpečné ukládání hesel využívající AES šifrování. Projekt sloužil pro pochopení kryptografie a bezpečného uložení dat."
+                    data-tags="#Security #Cryptography #Python">
+                    <div class="project-img-wrap">
+                        <img src="images/pswd-manager.png" alt="Password Manager" loading="lazy">
+                        <div class="project-overlay">
+                            <span class="lang-text" data-cz="Zobrazit detail" data-en="View detail">Zobrazit
+                                detail</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <h4>Secure Password Manager</h4>
+                        <div class="project-chips"><span>#Security</span><span>#Cryptography</span></div>
+                    </div>
+                </article>
+                <article class="project-card reveal" data-category="python" data-title="Python Port Scanner"
+                    data-desc="Skript v Pythonu pro skenování lokální sítě — nalezení aktivních zařízení a otevřených portů. Skvělý nástroj pro pochopení síťové komunikace."
+                    data-tags="#Python #Networking #Security">
+                    <div class="project-img-wrap">
+                        <img src="images/Python-scanner.png" alt="Port Scanner" loading="lazy">
+                        <div class="project-overlay">
+                            <span class="lang-text" data-cz="Zobrazit detail" data-en="View detail">Zobrazit
+                                detail</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <h4>Python Port Scanner</h4>
+                        <div class="project-chips"><span>#Python</span><span>#Networking</span></div>
+                    </div>
+                </article>
+                <article class="project-card reveal" data-category="web" data-title="Subnet IP Kalkulačka"
+                    data-desc="Webová aplikace — IP kalkulačka. Uživatel zadá IP adresu a masku, web vypočítá síť, broadcast a rozsah použitelných adres."
+                    data-tags="#WebDev #Networking #JS">
+                    <div class="project-img-wrap">
+                        <img src="images/IP-calculator.png" alt="IP Calculator" loading="lazy">
+                        <div class="project-overlay">
+                            <span class="lang-text" data-cz="Zobrazit detail" data-en="View detail">Zobrazit
+                                detail</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <h4>Subnet IP Kalkulačka</h4>
+                        <div class="project-chips"><span>#WebDev</span><span>#Networking</span></div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="section reveal">
         <div class="container">
-            <span class="section-tag">03 / Kontakt</span>
-            <div class="contact-wrap">
-                <div class="contact-text">
-                    <h2>Máte nápad? <br>Pojďme ho realizovat.</h2>
-                    
-                    <div class="copy-email-box" id="copy-email">
-                        <span class="email-text">frantisek.nahlik299@gmail.com</span>
-                        <span class="copy-badge">Klikni pro kopírování</span>
-                    </div>
-
-                    <div class="social-links-large">
-                        <a href="https://github.com/frantiseknahlik" target="_blank">GitHub ↗</a>
-                        <a href="https://www.instagram.com/frantissekk" target="_blank">Instagram ↗</a>
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <span class="section-tag lang-text" data-cz="05 / Kontakt" data-en="05 / Contact">05 /
+                        Kontakt</span>
+                    <h2 class="section-title lang-text" data-cz="Pojďme se spojit." data-en="Let's connect.">Pojďme
+                        se<br>spojit.</h2>
+                    <p class="contact-sub lang-text"
+                        data-cz="Hledám stáž, praxi nebo zajímavý projekt, kde mohu uplatnit znalosti v praxi."
+                        data-en="I'm looking for an internship, practice, or an interesting project to apply my knowledge.">
+                        Hledám stáž, praxi nebo zajímavý projekt, kde mohu uplatnit znalosti v praxi.
+                    </p>
+                    <button class="email-row" id="copy-email">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="email-addr">frantisek.nahlik299@gmail.com</span>
+                        <span class="copy-tag lang-text" id="copy-tag" data-cz="Kopírovat"
+                            data-en="Copy">Kopírovat</span>
+                    </button>
+                    <div class="contact-socials">
+                        <a href="https://github.com/frantiseknahlik" target="_blank" class="icon-link"
+                            aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" target="_blank" class="icon-link" aria-label="LinkedIn"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/frantissekk" target="_blank" class="icon-link"
+                            aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
-                
-                <form class="minimal-form">
-                    <input type="text" placeholder="Vaše jméno" required>
-                    <input type="email" placeholder="Váš e-mail" required>
-                    <textarea placeholder="Jak vám mohu pomoci?" rows="4"></textarea>
-                    <button type="submit" class="submit-btn">Odeslat zprávu</button>
-                </form>
+                <div class="contact-right">
+                    <form class="contact-form" id="contact-form" novalidate>
+                        <div class="form-row">
+                            <label class="form-label lang-text" data-cz="Jméno" data-en="Name">Jméno</label>
+                            <input type="text" id="form-name" class="form-field" required>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label lang-text" data-cz="E-mail" data-en="Email">E-mail</label>
+                            <input type="email" id="form-email" class="form-field" required>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label lang-text" data-cz="Zpráva" data-en="Message">Zpráva</label>
+                            <textarea id="form-msg" class="form-field form-ta" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full lang-text" data-cz="Odeslat zprávu"
+                            data-en="Send Message">Odeslat zprávu</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="map-wrap reveal">
+    <!-- MAP -->
+    <div class="map-section reveal">
         <div id="map"></div>
     </div>
 
-    <footer class="minimal-footer">
-        <div class="container flex-footer">
-            <p>© 2026 František Náhlík. Všechna práva vyhrazena.</p>
-            <div class="socials">
-                <a href="#home">Nahoru ↑</a>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p class="lang-text" data-cz="© 2026 František Náhlík" data-en="© 2026 František Náhlík">© 2026 František
+                Náhlík</p>
+            <div class="footer-log">
+                <span class="log-pre">[SYS]</span>
+                <span id="cyber-log">Initializing...</span><span class="log-cur">_</span>
             </div>
+            <a href="#home" class="top-link lang-text" data-cz="Zpět nahoru ↑" data-en="Back to top ↑">Zpět nahoru ↑</a>
         </div>
     </footer>
 
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal">✕</button>
-            <img id="modal-image" src="" alt="">
-            <h3 id="modal-title"></h3>
-            <p id="modal-description"></p>
+    <!-- PROJECT MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <img class="modal-img" id="modal-img" src="" alt="">
+            <div class="modal-body">
+                <h3 id="modal-title"></h3>
+                <p id="modal-desc"></p>
+                <div id="modal-tags" class="modal-tags"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMAND PALETTE (Ctrl+K) -->
+    <div class="cmd-overlay" id="cmd-overlay">
+        <div class="cmd-box">
+            <div class="cmd-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="cmd-input" placeholder="Hledej příkaz..." autocomplete="off">
+                <kbd>ESC</kbd>
+            </div>
+            <div class="cmd-list" id="cmd-list"></div>
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
